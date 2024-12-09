@@ -43,6 +43,8 @@ def from_dict(data, require=None, use_rsa_signer=True):
             required keys is missing.
     """
     keys_needed = set(require if require is not None else [])
+    if use_rsa_signer:
+        keys_needed.add(crypt.base._JSON_FILE_PRIVATE_KEY)
 
     missing = keys_needed.difference(data.keys())
 
